@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  
+  --color-primary: #1e293b;
+  --color-primary-hover: #0f172a;
+  --color-primary-light: rgba(30, 41, 59, 0.06);
+  --color-accent: #b45309;
+  --color-accent-hover: #92400e;
+  --color-accent-light: rgba(180, 83, 9, 0.08);
+  --color-accent-secondary: #0284c7;
+  
+  --color-success-light: rgba(16, 185, 129, 0.08);
+  --color-danger-light: rgba(239, 68, 68, 0.08);
+  --color-warning-light: rgba(245, 158, 11, 0.08);
+  --color-info-light: rgba(59, 130, 246, 0.08);
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-700 antialiased font-sans transition-colors duration-300;
+  }
+  .dark body {
+    background-color: #090d16;
+    color: #cbd5e1;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid #e2e8f0;
+  }
+  .dark .glass {
+    background: rgba(17, 24, 39, 0.85) !important;
+    border-color: #1e293b !important;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes testimonial-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-testimonial-scroll {
+  animation: testimonial-scroll 40s linear infinite;
+}
+
+[data-tip]{position:relative}[data-tip]:hover::after{content:attr(data-tip);position:absolute;top:-26px;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;white-space:nowrap;z-index:50;pointer-events:none}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-testimonial-scroll {
+    animation: none;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
